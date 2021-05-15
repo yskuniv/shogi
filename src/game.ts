@@ -20,13 +20,18 @@ export class Game {
     play(
         newPos: Vector,
         currentPos: Vector | null,
-        komaType: new (owner: Player) => Koma
+        komaType: new (owner: Player) => Koma | null,
+        naru = false
     ): void {
         let koma
         if (currentPos) {
             const k = this.ban.get(currentPos)
             koma = k && k.owner === this.currentPlayer ? k : undefined
         } else if (komaType) {
+            if (naru) {
+                throw new IllegalOperationError()
+            }
+
             koma = findThenPop(
                 this.mochigomaList,
                 (k) => k.owner == this.currentPlayer && k instanceof komaType
@@ -44,10 +49,27 @@ export class Game {
             throw new IllegalOperationError()
         }
 
+        if (naru) {
+            if (
+                !currentPos ||
+                !(
+                    (this.currentPlayer === 'sente' &&
+                        (newPos.row <= 3 || currentPos.row <= 3)) ||
+                    (this.currentPlayer === 'gote' &&
+                        (newPos.row >= 7 || currentPos.row >= 7))
+                )
+            ) {
+                throw new IllegalOperationError()
+            }
+
+            koma.nari = true
+        }
+
         const komaOnNewPos = this.ban.get(newPos)
         if (komaOnNewPos) {
             this.ban.delete(newPos)
             komaOnNewPos.owner = this.currentPlayer
+            komaOnNewPos.nari = false
             this.mochigomaList.push(komaOnNewPos)
         }
 
