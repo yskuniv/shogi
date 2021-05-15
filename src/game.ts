@@ -47,6 +47,7 @@ export class Game {
         const komaOnNewPos = this.ban.get(newPos)
         if (komaOnNewPos) {
             this.ban.delete(newPos)
+            komaOnNewPos.owner = this.currentPlayer
             this.mochigomaList.push(komaOnNewPos)
         }
 
