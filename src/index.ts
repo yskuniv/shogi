@@ -1,3 +1,5 @@
-export function test(): void {
-    console.log("hello")
-}
+export * from './vector'
+export * from './types'
+export * from './ban'
+export * from './koma'
+export * from './game'
