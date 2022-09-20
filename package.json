@@ -1,0 +1,30 @@
+{
+  "name": "shogi",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "files": ["dist/**/*"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yskuniv/shogi.git"
+  },
+  "author": "ysk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yskuniv/shogi/issues"
+  },
+  "homepage": "https://github.com/yskuniv/shogi#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.59",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
+    "eslint": "^8.23.1",
+    "prettier": "2.7.1",
+    "typescript": "^4.8.3"
+  }
+}
